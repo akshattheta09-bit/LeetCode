@@ -9,24 +9,31 @@
 import java.util.*
 import java.util.Scanner;
 
+import java.util.*;
 
-class solution{
+class Prob_32 {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
-        for(char brkt: s.toCharArray()){
-            if(brkt=='(' || brkt=='{' || brkt=='['){
+        
+        for (char brkt : s.toCharArray()) {
+            if (brkt == '(' || brkt == '{' || brkt == '[') {
                 stack.push(brkt);
-            }else{
-            if((stack.peek()=='(' && brkt==')') ||
-             (stack.peek()=='{' && brkt=='}') ||
-              (stack.peek()=='[' && brkt==']')){
-                stack.pop();
+            } else {
+             
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                
+                if ((stack.peek() == '(' && brkt == ')') ||
+                    (stack.peek() == '{' && brkt == '}') ||
+                    (stack.peek() == '[' && brkt == ']')) {
+                    stack.pop();
+                } else {
+                    return false;
+                }
             }
-            else{
-                return false;
-            }
-        }
-    }
-    return stack.isEmpty();
-
-
+        } 
+        
+        return stack.isEmpty();
+    } 
+} 
