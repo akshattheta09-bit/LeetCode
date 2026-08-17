@@ -10,12 +10,23 @@ import java.util.*
 import java.util.Scanner;
 
 
-public class lec2{
-    public static void main(String[] args) {
-        String s = "{[()]}"; // Example input string
-        System.out.println(isValid(s)); // Output: true
-    }public static boolean isValid(String s){
+class solution{
+    public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
-    for(char c:s.array)
+        for(char brkt: s.toCharArray()){
+            if(brkt=='(' || brkt=='{' || brkt=='['){
+                stack.push(brkt);
+            }else{
+            if((stack.peek()=='(' && brkt==')') ||
+             (stack.peek()=='{' && brkt=='}') ||
+              (stack.peek()=='[' && brkt==']')){
+                stack.pop();
+            }
+            else{
+                return false;
+            }
+        }
     }
-}
+    return stack.isEmpty();
+
+
